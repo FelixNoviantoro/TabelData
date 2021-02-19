@@ -30,18 +30,18 @@ public class Home {
         return "insertproduct";
     }
 
-    @PostMapping("/saveproduct")
-    public String saveProduct(
-            @ModelAttribute Product product,
-            @RequestParam(required = false, name = "cari") Integer cari,
-            ModelMap mapParam
-    ) {
-        System.out.println(product.getProductId());
-        masterData.insertproduct(product);
-        cari = product.getProductId();
-        mapParam.put("cek", masterData.fetchProductAll(cari));
-        return "productlist";
-    }
+//    @PostMapping("/saveproduct")
+//    public String saveProduct(
+//            @ModelAttribute Product product,
+//            @RequestParam(required = false, name = "cari") Integer cari,
+//            ModelMap mapParam
+//    ) {
+//        System.out.println(product.getProductId());
+//        masterData.insertproduct(product);
+//        cari = product.getProductId();
+//        mapParam.put("cek", masterData.fetchProductAll(cari));
+//        return "productlist";
+//    }
 
     @PostMapping("/updateproduct")
     public String updateProduct(@Valid Product product, BindingResult bindingResult, Model model) {
