@@ -1,0 +1,92 @@
+<!doctype html>
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http//www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addkategori</title>
+</head>
+<body>
+<div layout:fragment = "content">
+    <form action="#" th:action="@{/saveproduct}" th:object="${product}"  method="post">
+
+        <div>
+            <label>product ID</label>
+            <div>
+                <input type="text" th:field="*{productId}" >
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}">Error id</span>
+                <!--                    th:field dapat befungis sebagi setter atau getter-->
+            </div>
+        </div>
+        <div>
+            <label>product Nama</label>
+            <div>
+                <input type="text" th:field="*{productName}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Error nama</span>
+            </div>
+        </div>
+        <div>
+            <label>supplier Id</label>
+            <div>
+                <input type="text" th:field="*{supplierId}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('supplierId')}" th:errors="*{supplierId}">Error supplierId</span>
+            </div>
+        </div>
+        <div>
+            <label>category Id</label>
+            <div>
+                <input type="text" th:field="*{categoryId}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}">Error categoryId</span>
+            </div>
+        </div>
+        <div>
+            <label>quantity Per Unit</label>
+            <div>
+                <input type="text" th:field="*{quantityPerUnit}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('quantityPerUnit')}" th:errors="*{quantityPerUnit}">Error quantityPerUnit</span>
+            </div>
+        </div>
+        <div>
+            <label>unit Price</label>
+            <div>
+                <input type="text" th:field="*{unitPrice}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Error unitPrice</span>
+            </div>
+        </div>
+        <div>
+            <label>unit In Stock</label>
+            <div>
+                <input type="text" th:field="*{unitInStock}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('unitInStock')}" th:errors="*{unitInStock}">Error unitInStock</span>
+            </div>
+        </div>
+        <div>
+            <label>units On Order</label>
+            <div>
+                <input type="text" th:field="*{unitsOnOrder}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('unitsOnOrder')}" th:errors="*{unitsOnOrder}">Error unitsOnOrder</span>
+            </div>
+        </div>
+        <div>
+            <label>re Order Level</label>
+            <div>
+                <input type="text" th:field="*{reOrderLevel}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('reOrderLevel')}" th:errors="*{reOrderLevel}">Error reOrderLevel</span>
+            </div>
+        </div>
+        <div>
+            <label>discontinued</label>
+            <div>
+                <input type="text" th:field="*{discontinued}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('discontinued')}" th:errors="*{discontinued}">Error discontinued</span>
+            </div>
+        </div>
+        <input type="submit" value="submit" class="custom-range">
+
+    </form>
+</div>
+</body>
+</html>

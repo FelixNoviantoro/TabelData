@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http//www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addkategori</title>
+</head>
+<body>
+<div layout:fragment = "content">
+    <form action="#" th:action="@{/updateproduct}" th:object="${product}"  method="post">
+
+        <div>
+            <label>ID</label>
+            <div>
+                <input type="text" th:field="*{productId}" >
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}">Error productId</span>
+                <!--                    th:field dapat befungis sebagi setter atau getter-->
+            </div>
+        </div>
+        <div>
+            <label>NAMA</label>
+            <div>
+                <input type="text" th:field="*{productName}">
+                <span class="alert alert-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Error nama</span>
+            </div>
+        </div>
+        <input type="submit" value="submit" class="custom-range">
+
+    </form>
+</div>
+</body>
+</html>

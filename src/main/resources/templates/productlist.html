@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http//www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product List</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>Data Product</h1>
+        <form action="#" th:action="@{productlist}">
+            <p>Nama : <input type="text" name="cari" class="form-control" placeholder="masukin angka"></p>
+            <p><input type="submit" value="submit" class="form-control"></p>
+        </form>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">productID</th>
+                <th scope="col">productname</th>
+                <th scope="col">supplierId</th>
+                <th scope="col">categoryId</th>
+                <th scope="col">quantityPerUnit</th>
+                <th scope="col">unitPrice</th>
+                <th scope="col">unitInStock</th>
+                <th scope="col">unitsOnOrder</th>
+                <th scope="col">reOrderLevel</th>
+                <th scope="col">discontinued</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pro, in: ${cek}">
+                <td th:text="${in.index}"></td>
+                <td th:text="${pro.productId}"></td>
+                <td th:text="${pro.productName}"></td>
+                <td th:text="${pro.supplierId}"></td>
+                <td th:text="${pro.categoryId}"></td>
+                <td th:text="${pro.quantityPerUnit}"></td>
+                <td th:text="${pro.unitPrice}"></td>
+                <td th:text="${pro.unitInStock}"></td>
+                <td th:text="${pro.unitsOnOrder}"></td>
+                <td th:text="${pro.reOrderLevel}"></td>
+                <td th:text="${pro.discontinued}"></td>
+                <th><a th:href="@{|/updateproduct/${pro.productId}|}">ubah</a></th>
+                <th><a th:href="@{|/deleteproduct/${pro.productId}|}">delete</a></th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
