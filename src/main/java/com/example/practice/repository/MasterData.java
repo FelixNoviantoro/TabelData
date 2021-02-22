@@ -25,14 +25,21 @@ public class MasterData {
     public List<Product> fetchProductAll(Integer cari) {
         try (Connection con = sql2o.open()) {
             if (ObjectUtils.isEmpty(cari)) {
-                cari = null;
-            }
-            final String query =
-                    "SELECT * FROM product WHERE productId LIKE concat('%' , :ID, '%')";
+//                cari = null;
+                final String query =
+                        "SELECT * FROM product";
 
-            return con.createQuery(query)
-                    .addParameter("ID", cari)
-                    .executeAndFetch(Product.class);
+                return con.createQuery(query)
+                        .executeAndFetch(Product.class);
+            } else {
+                final String query =
+                        "SELECT * FROM product WHERE productId LIKE concat('%' , :ID, '%')";
+
+                return con.createQuery(query)
+                        .addParameter("ID", cari)
+                        .executeAndFetch(Product.class);
+            }
+
         }
     }
 
@@ -40,6 +47,7 @@ public class MasterData {
         try (Connection con = sql2o.open()) {
             if (ObjectUtils.isEmpty(cari)) {
                 cari = null;
+
             }
             final String query =
                     "SELECT * FROM product WHERE productId = :ID";

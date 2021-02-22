@@ -68,7 +68,8 @@ public class Home {
     @GetMapping("deleteproduct/{id}")
     public String deleteProduct(@PathVariable("id") Integer id, Model model){
         model.addAttribute("product", masterData.deleteProduct(id));
-        return "updateproduct";
+        masterData.fetchProductAll(null);
+        return "productlist";
     }
 }
 
