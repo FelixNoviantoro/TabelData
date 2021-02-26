@@ -47,7 +47,6 @@ public class MasterData {
         try (Connection con = sql2o.open()) {
             if (ObjectUtils.isEmpty(cari)) {
                 cari = null;
-
             }
             final String query =
                     "SELECT * FROM product WHERE productId = :ID";
@@ -78,15 +77,20 @@ public class MasterData {
         jdbcTemplate.update(query, product.getProductName(), product.getProductId());
     }
 
-    public Product deleteProduct(Integer cari) {
-        try (Connection con = sql2o.open()) {
-            final String query =
-                    "DELETE FROM product WHERE productId = :ID";
-
-            return con.createQuery(query)
-                    .addParameter("ID", cari)
-                    .executeAndFetchFirst(Product.class);
-        }
+    public void deleteProduct(Integer id) {
+        final String query = "DELETE FROM product WHERE productId = ?";
+        jdbcTemplate.update(query, id);
     }
+
+    // public Product deleteProduct(Integer cari) {
+    //     try (Connection con = sql2o.open()) {
+    //         final String query =
+    //                 "DELETE FROM product WHERE productId = :ID";
+
+    //         return con.createQuery(query)
+    //                 .addParameter("ID", cari)
+    //                 .executeAndFetchFirst(Product.class);
+    //     }
+    // }
 
 }
