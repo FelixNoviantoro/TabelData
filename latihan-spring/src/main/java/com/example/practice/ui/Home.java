@@ -1,5 +1,6 @@
 package com.example.practice.ui;
 import com.example.practice.model.Product;
+import com.example.practice.model.Login;
 import com.example.practice.repository.MasterData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import javax.validation.Valid;
 import java.util.Map;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Objects;
 
 @Controller
 public class Home {
@@ -93,6 +96,57 @@ public class Home {
     public ResponseEntity<List<Product>> deleteProductjson(@PathVariable("id") Integer id){
         masterData.deleteProduct(id);
         return ResponseEntity.ok(masterData.fetchProductAll(null));
+    }
+
+    // @PostMapping("api/getuser")
+    // public ResponseEntity<Login> getUsernData(){
+    //     return ResponseEntity.ok(masterData.getUser("ABC", "ABCD"));
+    // }
+
+    // @PostMapping("/api/login")
+    // public ResponseEntity<Map> loginForm(
+    //     @RequestBody Login login, 
+    //     BindingResult bindingResult){
+
+    //     Map<String, Object> status = new HashMap<>();
+    //     if(login != null && Objects.equals(login.getUsername(),"ABC")
+    //     && Objects.equals(login.getPassword(), "12345")) {
+    //         status.put("status", true);
+    //     } else {
+    //         status.put("status", false);
+    //     }
+    //     return ResponseEntity.ok(status);
+    // }
+
+    @PostMapping("/api/login/{username}")
+    public ResponseEntity<Login> loginForm(
+        @PathVariable("username") String username, 
+        @RequestBody Login login, 
+        BindingResult bindingResult){
+
+        Login user = masterData.getUser(username);
+        if(login != null && Objects.equals(login.getUsername(), user.getUsername())
+        && Objects.equals(login.getPassword(), user.getPassword())) {
+            user.setIsLogin(true);
+            masterData.updateJam(user);
+            masterData.updateIsLogin(user);
+        } else {
+            user.setIsLogin(false);
+        }
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/api/logout/{username}")
+    public ResponseEntity<Login> logoutForm(
+        @PathVariable("username") String username, 
+        @RequestBody Login login, 
+        BindingResult bindingResult){
+
+        Login user = masterData.getUser(username);
+            user.setIsLogin(false);
+            masterData.updateJam(user);
+            masterData.updateIsLogin(user);
+        return ResponseEntity.ok(user);
     }
 
 }
